@@ -638,7 +638,7 @@ export default function Chatbot({
           {msg.items && (
             <div className="flex flex-col gap-2 mt-2">
               {/* Mostrar ciudades como botones */}
-              {estado === "ciudad" && msg.items.filter(i => i.tipo === "ciudad").map((item, idx) => {
+              {estado === "ciudad" && msg.items.filter(i => i.tipo === "ciudad").map((item) => {
                 const ciudad = item as CiudadItem;
                 return (
                   <button
@@ -653,7 +653,7 @@ export default function Chatbot({
                 );
               })}
               {/* Mostrar hoteles como botones */}
-              {estado === "hotel" && msg.items.filter(i => i.tipo === "hotel").map((item, idx) => {
+              {estado === "hotel" && msg.items.filter(i => i.tipo === "hotel").map((item) => {
                 const hotel = item as HotelItem;
                 return (
                   <button
@@ -683,7 +683,7 @@ export default function Chatbot({
 
 
               {/* Mostrar solo el nombre de los sitios turísticos como botón */}
-              {msg.items.filter(i => i.tipo === "sitio").map((item, idx) => {
+              {msg.items.filter(i => i.tipo === "sitio").map((item) => {
                 const sitio = item as Sitio;
                 return (
                   <button
