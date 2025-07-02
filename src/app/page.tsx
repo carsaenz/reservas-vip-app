@@ -157,13 +157,34 @@ export default function Home() {
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [fechaInicio, setFechaInicio] = useState<Date | null>(null);
   const [fechaFin, setFechaFin] = useState<Date | null>(null);
-  const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<any>(null);
-  const [mostrarCiudades, setMostrarCiudades] = useState(false);
+  type Habitacion = {
+    id: string;
+    nombre: string;
+    imagen: string;
+    descripcion: string;
+    precio: string;
+    capacidad: string;
+    servicios: string[];
+  };
+  const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<Habitacion | null>(null);
+  const [mostrarCiudades] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
   const [reservaFinalizada, setReservaFinalizada] = useState(false);
-  const [hoteles, setHoteles] = useState<any[]>([]);
-  const [habitaciones, setHabitaciones] = useState<any[]>([]);
-  const [carrito, setCarrito] = useState<any[]>([]);
+  type Hotel = {
+    id: string;
+    nombre: string;
+    imagen: string;
+    descripcion: string;
+  };
+  const [hoteles, setHoteles] = useState<Hotel[]>([]);
+  const [habitaciones, setHabitaciones] = useState<Habitacion[]>([]);
+  type CarritoItem = Habitacion & {
+    ciudad: string | null;
+    hotel: string | null;
+    fechaInicio: Date | null;
+    fechaFin: Date | null;
+  };
+  const [carrito, setCarrito] = useState<CarritoItem[]>([]);
   const [showCarrito, setShowCarrito] = useState(false);
   const [showPago, setShowPago] = useState(false);
   const [pago, setPago] = useState({
@@ -196,7 +217,7 @@ export default function Home() {
   }
 
   // Agregar habitación al carrito (requiere ciudad y hotel seleccionados)
-  function agregarAlCarrito(habitacion: any) {
+  function agregarAlCarrito(habitacion: Habitacion) {
     setCarrito([
       ...carrito,
       {

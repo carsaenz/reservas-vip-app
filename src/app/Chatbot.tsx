@@ -234,22 +234,32 @@ export default function Chatbot({
   reservaFinalizada,
   onResetReserva
 }: {
-  ciudades: any[],
-  hotelesPorCiudad: any,
-  habitacionesPorHotel: any,
-  onShowHoteles: (hoteles: any[]) => void,
-  onShowHabitaciones: (habitaciones: any[]) => void,
+  ciudades: { id: string; nombre: string; imagen: string; descripcion: string }[],
+  hotelesPorCiudad: Record<string, { id: string; nombre: string; imagen: string; descripcion: string }[]>,
+  habitacionesPorHotel: Record<string, { id: string; nombre: string; imagen: string; descripcion: string; precio: string; capacidad: string; servicios: string[] }[]>,
+  onShowHoteles: (hoteles: { id: string; nombre: string; imagen: string; descripcion: string }[]) => void,
+  onShowHabitaciones: (habitaciones: { id: string; nombre: string; imagen: string; descripcion: string; precio: string; capacidad: string; servicios: string[] }[]) => void,
   reservaFinalizada?: boolean,
   onResetReserva?: () => void
 }) {
 
-  const [sitioAmpliado, setSitioAmpliado] = useState<any | null>(null);
-  const [sitiosSeleccionados, setSitiosSeleccionados] = useState<any[]>([])
+  type CiudadItem = { tipo: "ciudad"; id: string; nombre: string; imagen: string; descripcion: string };
+  type HotelItem = { tipo: "hotel"; id: string; nombre: string; imagen: string; descripcion: string };
+  type HabitacionItem = { tipo: "habitacion"; id: string; nombre: string; imagen: string; descripcion: string; precio: string; capacidad: string; servicios: string[] };
+  type Sitio = { tipo: "sitio"; nombre: string; descripcion: string; imagen: string; ubicacion: string };
+  type Mensaje = {
+    autor: "bot" | "usuario";
+    texto: string;
+    imagen?: string;
+    items?: (CiudadItem | HotelItem | HabitacionItem | Sitio)[];
+  };
+  // Elimina variables no usadas y tipa correctamente los estados
+  const [sitioAmpliado, setSitioAmpliado] = useState<Sitio | null>(null);
   const [idioma, setIdioma] = useState<"es" | "en">("es");
   const [estado, setEstado] = useState<"inicio" | "ciudad" | "hotel" | "habitacion">("inicio");
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState<string | null>(null);
-  const [hotelSeleccionado, setHotelSeleccionado] = useState<string | null>(null);
-  const [mensajes, setMensajes] = useState<any[]>([]);
+  // Eliminar hotelSeleccionado, no se usa en la lógica
+  const [mensajes, setMensajes] = useState<Mensaje[]>([]);
   const [input, setInput] = useState("");
 
   const traducciones = {
@@ -364,10 +374,10 @@ export default function Chatbot({
     ]
   };
 
-  const sugerenciasTuristicas = {
-    es: "Algunas sugerencias de sitios turisticos: Plaza Central, Museo de Arte, Parque Natural, Centro Histórico y Mercado Local.",
-    en: "Some suggestions for tourist places: Central Plaza, Art Museum, Natural Park, Historic Center, and Local Market."
-  };
+    // const sugerenciasTuristicas = {
+    //   es: "Algunas sugerencias de sitios turisticos: Plaza Central, Museo de Arte, Parque Natural, Centro Histórico y Mercado Local.",
+    //   en: "Some suggestions for tourist places: Central Plaza, Art Museum, Natural Park, Historic Center, and Local Market."
+    // };
 
   useEffect(() => {
     if (reservaFinalizada) {
@@ -400,7 +410,7 @@ export default function Chatbot({
       estado === "inicio" &&
       sitiosTuristicos[idioma as keyof typeof sitiosTuristicos].some((s: string) => texto.includes(normalizar(s)))
     ) {
-      let ciudad = ciudadSeleccionada;
+    const ciudad = ciudadSeleccionada;
       if (!ciudad) {
         setMensajes([
           ...mensajes,
@@ -409,14 +419,12 @@ export default function Chatbot({
             ? "¿Para qué ciudad deseas ver sitios turísticos? Escribe el nombre de la ciudad (Cartagena, Medellín, San Andrés o Santa Marta)."
             : "For which city do you want to see tourist places? Type the city name (Cartagena, Medellín, San Andrés or Santa Marta)." }
         ]);
-        setSitiosSeleccionados([]);
         setInput("");
         return;
       }
       const key = ciudad.trim().toLowerCase();
       const sitios = sitiosPorCiudad[key as keyof typeof sitiosPorCiudad];
       if (sitios && sitios.length > 0) {
-        setSitiosSeleccionados(sitios);
         setMensajes([
           ...mensajes,
           { autor: "usuario", texto: input },
@@ -425,9 +433,10 @@ export default function Chatbot({
             texto: idioma === "es"
               ? "Selecciona un sitio turístico para ver más detalles:"
               : "Select a tourist site to see more details:",
-            items: sitios.map((sitio: any) => ({
+            items: sitios.map((sitio) => ({
+              tipo: "sitio",
               nombre: sitio.nombre,
-              id: sitio.nombre, // o usa un id único si tienes
+              id: sitio.nombre,
               imagen: sitio.imagen,
               descripcion: sitio.descripcion,
               ubicacion: sitio.ubicacion
@@ -462,7 +471,6 @@ export default function Chatbot({
       if (ciudad) {
         const sitios = sitiosPorCiudad[ciudad as keyof typeof sitiosPorCiudad];
         setCiudadSeleccionada(ciudad);
-        setSitiosSeleccionados(sitios);
         setMensajes([
           ...mensajes,
           { autor: "usuario", texto: input },
@@ -471,9 +479,10 @@ export default function Chatbot({
             texto: idioma === "es"
               ? "Selecciona un sitio turístico para ver más detalles:"
               : "Select a tourist site to see more details:",
-            items: sitios.map((sitio: any) => ({
+            items: sitios.map((sitio) => ({
+              tipo: "sitio",
               nombre: sitio.nombre,
-              id: sitio.nombre, // o usa un id único si tienes
+              id: sitio.nombre,
               imagen: sitio.imagen,
               descripcion: sitio.descripcion,
               ubicacion: sitio.ubicacion
@@ -487,7 +496,7 @@ export default function Chatbot({
 
     // Preguntas frecuentes (FAQ)
     const faqs = faq[idioma as keyof typeof faq];
-    const match = faqs.find((f: any) =>
+    const match = faqs.find((f) =>
       normalizar(texto).includes(normalizar(f.pregunta))
     );
     if (estado === "inicio" && match) {
@@ -508,7 +517,7 @@ export default function Chatbot({
       ]);
       setMensajes(msgs => [
         ...msgs,
-        { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaCiudad, items: ciudades }
+        { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaCiudad, items: ciudades.map((c) => ({ tipo: "ciudad", ...c })) }
       ]);
       setEstado("ciudad");
       setInput("");
@@ -527,17 +536,26 @@ export default function Chatbot({
     setCiudadSeleccionada(id);
     setMensajes(msgs => [
       ...msgs,
-      { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaHotel, items: hotelesPorCiudad[id].map((h: any) => ({ nombre: h.nombre, id: h.id, imagen: h.imagen })) }
+      { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaHotel, items: hotelesPorCiudad[id].map((h) => ({ tipo: "hotel", nombre: h.nombre, id: h.id, imagen: h.imagen, descripcion: h.descripcion })) }
     ]);
     onShowHoteles(hotelesPorCiudad[id]);
     setEstado("hotel");
   }
 
   function handleHotel(id: string) {
-    setHotelSeleccionado(id);
+    // setHotelSeleccionado(id); // Eliminar, no se usa
     setMensajes(msgs => [
       ...msgs,
-      { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaHabitacion, items: habitacionesPorHotel[id]?.map((h: any) => ({ nombre: h.nombre, id: h.id })) || [] }
+      { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaHabitacion, items: habitacionesPorHotel[id]?.map((h) => ({
+        tipo: "habitacion",
+        nombre: h.nombre,
+        id: h.id,
+        imagen: h.imagen,
+        descripcion: h.descripcion,
+        precio: h.precio,
+        capacidad: h.capacidad,
+        servicios: h.servicios
+      })) || [] }
     ]);
     onShowHoteles([]);
     onShowHabitaciones(habitacionesPorHotel[id] || []);
@@ -549,7 +567,7 @@ export default function Chatbot({
       setEstado("hotel");
       setMensajes(msgs => [
         ...msgs,
-        { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaHotel, items: hotelesPorCiudad[ciudadSeleccionada!] }
+        { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaHotel, items: hotelesPorCiudad[ciudadSeleccionada!].map((h) => ({ tipo: "hotel", nombre: h.nombre, id: h.id, imagen: h.imagen, descripcion: h.descripcion })) }
       ]);
       onShowHabitaciones([]);
       onShowHoteles(hotelesPorCiudad[ciudadSeleccionada!]);
@@ -557,7 +575,7 @@ export default function Chatbot({
       setEstado("ciudad");
       setMensajes(msgs => [
         ...msgs,
-        { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaCiudad, items: ciudades }
+        { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].seleccionaCiudad, items: ciudades.map((c) => ({ tipo: "ciudad", ...c })) }
       ]);
       onShowHoteles([]);
     } else if (estado === "ciudad") {
@@ -594,43 +612,55 @@ export default function Chatbot({
           {msg.items && (
             <div className="flex flex-col gap-2 mt-2">
               {/* Mostrar ciudades como botones */}
-              {estado === "ciudad" && msg.items[0]?.nombre && !msg.items[0]?.ubicacion && msg.items.map((item: any, idx: number) => (
-                <button
-                  key={idx}
-                  className="flex items-center gap-2 text-left border rounded p-1 hover:bg-blue-50"
-                  onClick={() => handleCiudad(item.id)}
-                >
-                  {item.imagen && (
-                    <img src={item.imagen} alt={item.nombre} className="w-8 h-8 object-cover rounded" />
-                  )}
-                  <span>{item.nombre}</span>
-                </button>
-              ))}
+              {estado === "ciudad" && msg.items.filter(i => i.tipo === "ciudad").map((item, idx) => {
+                const ciudad = item as CiudadItem;
+                return (
+                  <button
+                    key={idx}
+                    className="flex items-center gap-2 text-left border rounded p-1 hover:bg-blue-50"
+                    onClick={() => handleCiudad(ciudad.id)}
+                  >
+                    {ciudad.imagen && (
+                      <img src={ciudad.imagen} alt={ciudad.nombre} className="w-8 h-8 object-cover rounded" />
+                    )}
+                    <span>{ciudad.nombre}</span>
+                  </button>
+                );
+              })}
               {/* Mostrar hoteles como botones */}
-              {estado === "hotel" && msg.items.map((item: any, idx: number) => (
-                <button
-                  key={idx}
-                  className="text-blue-600 underline text-left"
-                  onClick={() => handleHotel(item.id)}
-                >
-                  {item.nombre}
-                </button>
-              ))}
+              {estado === "hotel" && msg.items.filter(i => i.tipo === "hotel").map((item, idx) => {
+                const hotel = item as HotelItem;
+                return (
+                  <button
+                    key={idx}
+                    className="text-blue-600 underline text-left"
+                    onClick={() => handleHotel(hotel.id)}
+                  >
+                    {hotel.nombre}
+                  </button>
+                );
+              })}
               {/* Mostrar habitaciones como texto */}
-              {estado === "habitacion" && msg.items.map((item: any, idx: number) => (
-                <span key={idx} className="text-gray-800">{item.nombre}</span>
-              ))}
+              {estado === "habitacion" && msg.items.filter(i => i.tipo === "habitacion").map((item, idx) => {
+                const habitacion = item as HabitacionItem;
+                return (
+                  <span key={idx} className="text-gray-800">{habitacion.nombre}</span>
+                );
+              })}
               {/* Mostrar solo el nombre de los sitios turísticos como botón */}
-              {msg.items[0]?.ubicacion && msg.items.map((item: any, idx: number) => (
-                <button
-                  key={idx}
-                  className="text-blue-600 underline text-left"
-                  onClick={() => setSitioAmpliado(item)}
-                  type="button"
-                >
-                  {item.nombre}
-                </button>
-              ))}
+              {msg.items.filter(i => i.tipo === "sitio").map((item, idx) => {
+                const sitio = item as Sitio;
+                return (
+                  <button
+                    key={idx}
+                    className="text-blue-600 underline text-left"
+                    onClick={() => setSitioAmpliado(sitio)}
+                    type="button"
+                  >
+                    {sitio.nombre}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
