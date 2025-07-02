@@ -404,8 +404,9 @@ export default function Chatbot({
         { autor: "bot", texto: traducciones[idioma as keyof typeof traducciones].deseaAlgoMas }
       ]);
       setEstado("inicio");
-      if (onResetReserva) onResetReserva();
+      if (typeof onResetReserva === "function") onResetReserva();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reservaFinalizada, idioma]);
 
   function handleSend() {
@@ -624,6 +625,7 @@ export default function Chatbot({
           <span dangerouslySetInnerHTML={{ __html: msg.texto.replace(/\n/g, "<br/>") }} />
           {msg.imagen && (
             <div className="my-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={msg.imagen} alt="sitio turístico" className="w-full h-32 object-cover rounded" />
             </div>
           )}
@@ -634,13 +636,12 @@ export default function Chatbot({
                 const ciudad = item as CiudadItem;
                 return (
                   <button
-                    key={idx}
-                    className="flex items-center gap-2 text-left border rounded p-1 hover:bg-blue-50"
+                    key={ciudad.id}
+                    className="flex items-center gap-2 px-2 py-1 bg-blue-100 rounded hover:bg-blue-200"
                     onClick={() => handleCiudad(ciudad.id)}
                   >
-                    {ciudad.imagen && (
-                      <img src={ciudad.imagen} alt={ciudad.nombre} className="w-8 h-8 object-cover rounded" />
-                    )}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ciudad.imagen} alt={ciudad.nombre} className="w-8 h-8 object-cover rounded" />
                     <span>{ciudad.nombre}</span>
                   </button>
                 );
@@ -650,21 +651,23 @@ export default function Chatbot({
                 const hotel = item as HotelItem;
                 return (
                   <button
-                    key={idx}
-                    className="text-blue-600 underline text-left"
+                    key={hotel.id}
+                    className="flex items-center gap-2 px-2 py-1 bg-green-100 rounded hover:bg-green-200"
                     onClick={() => handleHotel(hotel.id)}
                   >
-                    {hotel.nombre}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={hotel.imagen} alt={hotel.nombre} className="w-8 h-8 object-cover rounded" />
+                    <span>{hotel.nombre}</span>
                   </button>
                 );
               })}
               {/* Mostrar habitaciones con botón para agregar al carrito y calendario modal */}
               {estado === "habitacion" && (
                 <React.Fragment>
-                  {msg.items.filter(i => i.tipo === "habitacion").map((item, idx) => {
+                  {msg.items.filter(i => i.tipo === "habitacion").map((item) => {
                     const habitacion = item as HabitacionItem;
                     return (
-                      <CalendarioReservaHabitacion key={idx} habitacion={habitacion} />
+                      <CalendarioReservaHabitacion key={habitacion.id} habitacion={habitacion} />
                     );
                   })}
                 </React.Fragment>
@@ -678,12 +681,14 @@ export default function Chatbot({
                 const sitio = item as Sitio;
                 return (
                   <button
-                    key={idx}
-                    className="text-blue-600 underline text-left"
+                    key={sitio.nombre}
+                    className="flex items-center gap-2 px-2 py-1 bg-yellow-100 rounded hover:bg-yellow-200"
                     onClick={() => setSitioAmpliado(sitio)}
                     type="button"
                   >
-                    {sitio.nombre}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={sitio.imagen} alt={sitio.nombre} className="w-8 h-8 object-cover rounded" />
+                    <span>{sitio.nombre}</span>
                   </button>
                 );
               })}
@@ -749,6 +754,7 @@ export default function Chatbot({
           >
             ×
           </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={sitioAmpliado.imagen} alt={sitioAmpliado.nombre} className="w-full h-64 object-cover rounded mb-4" />
           <div className="font-bold text-2xl mb-2">{sitioAmpliado.nombre}</div>
           <div className="text-gray-700 mb-2">{sitioAmpliado.descripcion}</div>
