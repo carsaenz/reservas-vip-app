@@ -640,26 +640,99 @@ export default function Chatbot({
                   </button>
                 );
               })}
-              {/* Mostrar habitaciones con botón para agregar al carrito */}
-              {estado === "habitacion" && msg.items.filter(i => i.tipo === "habitacion").map((item, idx) => {
-                const habitacion = item as HabitacionItem;
-                return (
-                  <div key={idx} className="flex items-center gap-2">
-                    <span className="text-gray-800">{habitacion.nombre}</span>
-                    <button
-                      className="ml-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs"
-                      onClick={() => {
-                        // Emitir evento personalizado para agregar al carrito
-                        const event = new CustomEvent("agregarAlCarrito", { detail: habitacion });
-                        window.dispatchEvent(event);
-                      }}
-                      type="button"
-                    >
-                      Agregar al carrito
-                    </button>
-                  </div>
-                );
-              })}
+              {/* Mostrar habitaciones con botón para agregar al carrito y calendario modal */}
+              {estado === "habitacion" && (
+                <React.Fragment>
+                  {msg.items.filter(i => i.tipo === "habitacion").map((item, idx) => {
+                    const habitacion = item as HabitacionItem;
+                    return (
+                      <CalendarioReservaHabitacion key={idx} habitacion={habitacion} />
+                    );
+                  })}
+                </React.Fragment>
+              )}
+
+
+
+
+// --- COMPONENTE AUXILIAR FUERA DEL PRINCIPAL ---
+type PropsCalendarioReservaHabitacion = {
+  habitacion: {
+    id: string;
+    nombre: string;
+    imagen: string;
+    descripcion: string;
+    precio: string;
+    capacidad: string;
+    servicios: string[];
+  };
+};
+
+function CalendarioReservaHabitacion({ habitacion }: PropsCalendarioReservaHabitacion) {
+  const [mostrarCalendario, setMostrarCalendario] = React.useState(false);
+  const [fechaEntrada, setFechaEntrada] = React.useState("");
+  const [fechaSalida, setFechaSalida] = React.useState("");
+  const [error, setError] = React.useState("");
+
+  function handleAgregar() {
+    if (!fechaEntrada || !fechaSalida) {
+      setError("Selecciona ambas fechas");
+      return;
+    }
+    if (fechaSalida <= fechaEntrada) {
+      setError("La fecha de salida debe ser posterior a la de entrada");
+      return;
+    }
+    setError("");
+    // Emitir evento personalizado con fechas
+    const event = new CustomEvent("agregarAlCarrito", { detail: { ...habitacion, fechaEntrada, fechaSalida } });
+    window.dispatchEvent(event);
+    setMostrarCalendario(false);
+    setFechaEntrada("");
+    setFechaSalida("");
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-gray-800">{habitacion.nombre}</span>
+      <button
+        className="ml-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs"
+        onClick={() => setMostrarCalendario(true)}
+        type="button"
+      >
+        Agregar al carrito
+      </button>
+      {mostrarCalendario && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+          <div className="relative bg-white rounded-xl shadow-2xl p-6 w-80 flex flex-col gap-3">
+            <button
+              className="absolute top-2 right-2 text-2xl font-bold text-gray-500 hover:text-gray-800"
+              onClick={() => setMostrarCalendario(false)}
+              aria-label="Cerrar"
+            >
+              ×
+            </button>
+            <div className="font-bold text-lg mb-2">Selecciona fechas para reservar</div>
+            <label className="text-sm">Fecha de entrada:
+              <input type="date" className="block border rounded px-2 py-1 mt-1 w-full" value={fechaEntrada} onChange={e => setFechaEntrada(e.target.value)} min={new Date().toISOString().split('T')[0]} />
+            </label>
+            <label className="text-sm">Fecha de salida:
+              <input type="date" className="block border rounded px-2 py-1 mt-1 w-full" value={fechaSalida} onChange={e => setFechaSalida(e.target.value)} min={fechaEntrada || new Date().toISOString().split('T')[0]} />
+            </label>
+            {error && <div className="text-red-500 text-xs">{error}</div>}
+            <button
+              className="bg-green-600 text-white px-4 py-2 rounded mt-2 hover:bg-green-700"
+              onClick={handleAgregar}
+              type="button"
+            >
+              Confirmar y agregar
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
               {/* Mostrar solo el nombre de los sitios turísticos como botón */}
               {msg.items.filter(i => i.tipo === "sitio").map((item, idx) => {
                 const sitio = item as Sitio;
