@@ -264,15 +264,31 @@ export default function Home() {
     // Escuchar evento personalizado del chatbot para agregar al carrito
     function handleAgregarAlCarrito(e: Event) {
       const habitacion = (e as CustomEvent).detail;
-      // Si hay fechas seleccionadas en el calendario, se usan; si no, se agregan como null
+      // Buscar ciudad y hotel a partir de la relación habitacionesPorHotel y hotelesPorCiudad
+      let ciudad = null;
+      let hotel = null;
+      // Buscar el hotel que contiene la habitación
+      for (const [hotelId, habitaciones] of Object.entries(habitacionesPorHotel)) {
+        if (habitaciones.some(h => h.id === habitacion.id)) {
+          hotel = hotelId;
+          break;
+        }
+      }
+      // Buscar la ciudad que contiene el hotel
+      for (const [ciudadId, hoteles] of Object.entries(hotelesPorCiudad)) {
+        if (hoteles.some(h => h.id === hotel)) {
+          ciudad = ciudadId;
+          break;
+        }
+      }
       setCarrito(prev => [
         ...prev,
         {
           ...habitacion,
-          ciudad: ciudadSeleccionada,
-          hotel: hotelSeleccionado,
-          fechaInicio,
-          fechaFin
+          ciudad,
+          hotel,
+          fechaInicio: null,
+          fechaFin: null
         }
       ]);
       setShowCarrito(true);
