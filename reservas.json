@@ -1,0 +1,572 @@
+[
+  {
+    "carrito": [
+      {
+        "id": "habitacion-4",
+        "nombre": "Habitación 4",
+        "imagen": "/productos/san-andres/hotel-create/habitacion-4/4.jpg",
+        "descripcion": "Suite premium con balcón.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-27T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "carlos",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "3245643141",
+      "correo": "saenzcarlos939@gmail.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700398",
+      "telefono": "3245643141"
+    },
+    "fecha": "2025-06-24T20:18:53.798Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-3",
+        "nombre": "Habitación 3",
+        "imagen": "/productos/santa-marta/hotel-chelsea/habitacion-3/3.jpg",
+        "descripcion": "Suite familiar espaciosa.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-27T05:00:00.000Z",
+        "fechaFin": "2025-06-29T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "carlos",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "3245643141",
+      "correo": "saenzcarlos939@gmail.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700398",
+      "telefono": "3245643141"
+    },
+    "fecha": "2025-06-24T20:23:31.186Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:02:59.650Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:01.389Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:03.573Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:04.822Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:06.411Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:07.131Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:08.304Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:09.115Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:09.212Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:10.559Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:11.050Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:11.427Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:11.645Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/san-andres/hotel-veruss/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-28T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "Jhohan ",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "123456",
+      "correo": "jhohansaenz939@gmil.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1006700399",
+      "telefono": "3005787874"
+    },
+    "fecha": "2025-06-24T21:03:11.707Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-3",
+        "nombre": "Habitación 3",
+        "imagen": "/productos/medellin/hotel-akyldiz/habitacion-3/3.jpg",
+        "descripcion": "Suite familiar espaciosa.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-27T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "arley",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "1324354644",
+      "correo": "saenzcarlos939@gmail.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "18746734",
+      "telefono": "311277634"
+    },
+    "fecha": "2025-06-24T21:24:36.585Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-4",
+        "nombre": "Habitación 4",
+        "imagen": "/productos/medellin/hotel-golden-nugget/habitacion-4/4.jpg",
+        "descripcion": "Suite premium con balcón.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-06-26T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "daniel",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "1324354644",
+      "correo": "saenzcarlos939@gmail.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "18746734",
+      "telefono": "311277634"
+    },
+    "fecha": "2025-06-24T21:27:29.811Z"
+  },
+  {
+    "carrito": [
+      {
+        "id": "habitacion-2",
+        "nombre": "Habitación 2",
+        "imagen": "/productos/cartagena/hotel-velle-vue/habitacion-2/2.jpg",
+        "descripcion": "Habitación doble con vista.",
+        "precio": "100.000 por noche",
+        "capacidad": "2 personas",
+        "servicios": [
+          "WiFi gratis",
+          "Desayuno incluido",
+          "Aire acondicionado"
+        ],
+        "fechaInicio": "2025-06-24T05:00:00.000Z",
+        "fechaFin": "2025-07-01T05:00:00.000Z"
+      }
+    ],
+    "pago": {
+      "nombre": "mike",
+      "tipoCuenta": "ahorros",
+      "numeroCuenta": "1324354644",
+      "correo": "saenzcarlos939@gmail.com",
+      "metodo": "nequi",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "18746734",
+      "telefono": "311277634"
+    },
+    "fecha": "2025-06-24T21:50:05.344Z"
+  }
+]
