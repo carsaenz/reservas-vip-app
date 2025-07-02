@@ -640,11 +640,24 @@ export default function Chatbot({
                   </button>
                 );
               })}
-              {/* Mostrar habitaciones como texto */}
+              {/* Mostrar habitaciones con botón para agregar al carrito */}
               {estado === "habitacion" && msg.items.filter(i => i.tipo === "habitacion").map((item, idx) => {
                 const habitacion = item as HabitacionItem;
                 return (
-                  <span key={idx} className="text-gray-800">{habitacion.nombre}</span>
+                  <div key={idx} className="flex items-center gap-2">
+                    <span className="text-gray-800">{habitacion.nombre}</span>
+                    <button
+                      className="ml-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs"
+                      onClick={() => {
+                        // Emitir evento personalizado para agregar al carrito
+                        const event = new CustomEvent("agregarAlCarrito", { detail: habitacion });
+                        window.dispatchEvent(event);
+                      }}
+                      type="button"
+                    >
+                      Agregar al carrito
+                    </button>
+                  </div>
                 );
               })}
               {/* Mostrar solo el nombre de los sitios turísticos como botón */}

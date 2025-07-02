@@ -261,7 +261,27 @@ export default function Home() {
     if (hoteles.length > 0 || habitaciones.length > 0) {
       setShowChatbot(false);
     }
-  }, [hoteles, habitaciones]);
+    // Escuchar evento personalizado del chatbot para agregar al carrito
+    function handleAgregarAlCarrito(e: Event) {
+      const habitacion = (e as CustomEvent).detail;
+      // Si hay fechas seleccionadas en el calendario, se usan; si no, se agregan como null
+      setCarrito(prev => [
+        ...prev,
+        {
+          ...habitacion,
+          ciudad: ciudadSeleccionada,
+          hotel: hotelSeleccionado,
+          fechaInicio,
+          fechaFin
+        }
+      ]);
+      setShowCarrito(true);
+    }
+    window.addEventListener("agregarAlCarrito", handleAgregarAlCarrito);
+    return () => {
+      window.removeEventListener("agregarAlCarrito", handleAgregarAlCarrito);
+    };
+  }, [hoteles, habitaciones, ciudadSeleccionada, hotelSeleccionado, fechaInicio, fechaFin]);
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
   <div
@@ -304,7 +324,8 @@ export default function Home() {
           return (
             <li key={idx} className="flex flex-col mb-4 border-b pb-2">
               <div className="flex items-center gap-2">
-                <img src={hab.imagen} alt={hab.nombre} className="w-16 h-12 object-cover rounded" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={hab.imagen} alt={hab.nombre} className="w-16 h-12 object-cover rounded" loading="lazy" decoding="async" />
                 <div>
                   <div className="font-semibold">{hab.nombre}</div>
                   <div className="text-xs text-gray-500">{hab.fechaInicio && hab.fechaFin ? `${new Date(hab.fechaInicio).toLocaleDateString()} - ${new Date(hab.fechaFin).toLocaleDateString()}` : ""}</div>
@@ -453,7 +474,8 @@ export default function Home() {
       <div className="flex gap-4 mt-8 flex-wrap justify-center">
         {ciudades.map(ciudad => (
           <div key={ciudad.id} className="bg-white/90 rounded-xl shadow-lg p-4 flex flex-col items-center max-w-xs border border-blue-200">
-            <img src={ciudad.imagen} alt={ciudad.nombre} className="rounded-lg w-40 h-24 object-cover mb-2" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={ciudad.imagen} alt={ciudad.nombre} className="rounded-lg w-40 h-24 object-cover mb-2" loading="lazy" decoding="async" />
             <h3 className="text-lg font-bold mb-1">{ciudad.nombre}</h3>
             <p className="text-gray-700">{ciudad.descripcion}</p>
             <button
@@ -472,7 +494,8 @@ export default function Home() {
         <div className="flex gap-4 mt-8 flex-wrap justify-center">
           {hoteles.map(hotel => (
             <div key={hotel.id} className="bg-white/90 rounded-xl shadow-lg p-4 flex flex-col items-center max-w-xs border border-blue-200">
-              <img src={hotel.imagen} alt={hotel.nombre} className="rounded-lg w-40 h-24 object-cover mb-2" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={hotel.imagen} alt={hotel.nombre} className="rounded-lg w-40 h-24 object-cover mb-2" loading="lazy" decoding="async" />
               <h3 className="text-lg font-bold mb-1">{hotel.nombre}</h3>
               <p className="text-gray-700">{hotel.descripcion}</p>
               <button
@@ -491,7 +514,8 @@ export default function Home() {
         <div className="flex gap-4 mt-8 flex-wrap justify-center">
           {habitaciones.map(hab => (
             <div key={hab.id} className="bg-white/90 rounded-xl shadow-lg p-4 flex flex-col items-center max-w-xs border border-blue-200">
-              <img src={hab.imagen} alt={hab.nombre} className="rounded-lg w-40 h-24 object-cover mb-2" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={hab.imagen} alt={hab.nombre} className="rounded-lg w-40 h-24 object-cover mb-2" loading="lazy" decoding="async" />
               <h3 className="text-lg font-bold mb-1">{hab.nombre}</h3>
               <p className="text-gray-700">{hab.descripcion}</p>
               <p className="text-blue-700 font-semibold">{hab.precio}</p>
@@ -574,7 +598,8 @@ export default function Home() {
         {showChatbot ? (
           <span style={{ fontSize: 24 }}>×</span>
         ) : (
-          <img src="/chatbot-icon.png" alt="Chatbot" style={{ width: 32, height: 32 }} />
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src="/chatbot-icon.png" alt="Chatbot" style={{ width: 32, height: 32 }} loading="lazy" decoding="async" />
         )}
       </button>
 
