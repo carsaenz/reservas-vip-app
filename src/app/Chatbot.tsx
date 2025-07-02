@@ -243,6 +243,24 @@ export default function Chatbot({
   onResetReserva?: () => void
 }) {
 
+  // --- INICIALIZAR MAPA GLOBAL DE HABITACION -> HOTEL/CIUDAD ---
+  useEffect(() => {
+    // Solo en cliente
+    if (typeof window !== "undefined") {
+      const mapa: Record<string, { hotel: string; ciudad: string }> = {};
+      for (const [ciudadId, hoteles] of Object.entries(hotelesPorCiudad)) {
+        for (const hotel of hoteles) {
+          const habitaciones = habitacionesPorHotel[hotel.id] || [];
+          for (const habitacion of habitaciones) {
+            mapa[habitacion.id] = { hotel: hotel.id, ciudad: ciudadId };
+          }
+        }
+      }
+      // @ts-ignore
+      window.__HOTELES_POR_HAB = mapa;
+    }
+  }, [hotelesPorCiudad, habitacionesPorHotel]);
+
   type CiudadItem = { tipo: "ciudad"; id: string; nombre: string; imagen: string; descripcion: string };
   type HotelItem = { tipo: "hotel"; id: string; nombre: string; imagen: string; descripcion: string };
   type HabitacionItem = { tipo: "habitacion"; id: string; nombre: string; imagen: string; descripcion: string; precio: string; capacidad: string; servicios: string[] };
@@ -756,12 +774,18 @@ type PropsCalendarioReservaHabitacion = {
   };
 };
 
+
+// Permite pasar ciudad y hotel desde el contexto del chatbot
 function CalendarioReservaHabitacion({ habitacion }: PropsCalendarioReservaHabitacion) {
   const [mostrarCalendario, setMostrarCalendario] = React.useState(false);
   const [fechaEntrada, setFechaEntrada] = React.useState("");
   const [fechaSalida, setFechaSalida] = React.useState("");
   const [error, setError] = React.useState("");
 
+  // Buscar ciudad y hotel a partir de la habitación
+  // Se asume que el componente principal tiene acceso a ciudades y hotelesPorCiudad
+  // y que la ciudad seleccionada está en el contexto del chatbot
+  // Para robustez, se busca el hotel y ciudad por la relación de IDs
   function handleAgregar() {
     if (!fechaEntrada || !fechaSalida) {
       setError("Selecciona ambas fechas");
@@ -772,8 +796,30 @@ function CalendarioReservaHabitacion({ habitacion }: PropsCalendarioReservaHabit
       return;
     }
     setError("");
-    // Emitir evento personalizado con fechas
-    const event = new CustomEvent("agregarAlCarrito", { detail: { ...habitacion, fechaEntrada, fechaSalida } });
+
+    // Buscar hotel y ciudad
+    let hotel = null;
+    let ciudad = null;
+    // @ts-ignore
+    const win = window as typeof window & { __HOTELES_POR_HAB?: Record<string, { hotel: string; ciudad: string }> };
+    if (win.__HOTELES_POR_HAB) {
+      const info = win.__HOTELES_POR_HAB[habitacion.id];
+      if (info) {
+        hotel = info.hotel;
+        ciudad = info.ciudad;
+      }
+    }
+
+    // Emitir evento personalizado con ciudad y hotel si se encuentran
+    const event = new CustomEvent("agregarAlCarrito", {
+      detail: {
+        ...habitacion,
+        fechaEntrada,
+        fechaSalida,
+        ciudad,
+        hotel
+      }
+    });
     window.dispatchEvent(event);
     setMostrarCalendario(false);
     setFechaEntrada("");
