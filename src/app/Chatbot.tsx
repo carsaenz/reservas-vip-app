@@ -256,7 +256,7 @@ export default function Chatbot({
           }
         }
       }
-      // @ts-ignore
+      // @ts-expect-error: window property for hotel-habitacion mapping
       window.__HOTELES_POR_HAB = mapa;
     }
   }, [hotelesPorCiudad, habitacionesPorHotel]);
