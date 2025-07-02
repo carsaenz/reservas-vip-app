@@ -295,6 +295,10 @@ const CalendarioReservaDesdePagina = ({ habitacion, ciudad, hotel, onClose, setC
 
 // --- Componente principal ---
 export default function Home() {
+  // Estado de idioma
+  const [lang, setLang] = useState<'es' | 'en'>('es');
+  const t = translations[lang];
+
   // Tipos usados en el componente
   type Habitacion = {
     id: string;
@@ -305,14 +309,11 @@ export default function Home() {
     capacidad: string;
     servicios: string[];
   };
+
   // Estados necesarios para la lógica y el renderizado
   const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<Habitacion | null>(null);
   const [fechaInicio, setFechaInicio] = useState<Date | null>(null);
   const [fechaFin, setFechaFin] = useState<Date | null>(null);
-  // Estado de idioma
-  const [lang, setLang] = useState<'es' | 'en'>('es');
-  const t = translations[lang];
-  // Eliminados estados y tipos no usados para cumplir ESLint
   const [showChatbot, setShowChatbot] = useState(false);
   const [reservaFinalizada, setReservaFinalizada] = useState(false);
   type Hotel = {
