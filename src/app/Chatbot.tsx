@@ -9,6 +9,13 @@ function normalizar(texto: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+// Tipado global para window.__HOTELES_POR_HAB
+type HotelesPorHab = Record<string, { hotel: string; ciudad: string }>;
+declare global {
+  interface Window {
+    __HOTELES_POR_HAB?: HotelesPorHab;
+  }
+}
 
 // Lista unificada de saludos e información
 const saludosInfo = [
@@ -256,7 +263,6 @@ export default function Chatbot({
           }
         }
       }
-      // @ts-expect-error: window property for hotel-habitacion mapping
       window.__HOTELES_POR_HAB = mapa;
     }
   }, [hotelesPorCiudad, habitacionesPorHotel]);
@@ -806,10 +812,9 @@ function CalendarioReservaHabitacion({ habitacion }: PropsCalendarioReservaHabit
     // Buscar hotel y ciudad
     let hotel = null;
     let ciudad = null;
-    // (removed unused @ts-expect-error)
-    const win = window as typeof window & { __HOTELES_POR_HAB?: Record<string, { hotel: string; ciudad: string }> };
-    if (win.__HOTELES_POR_HAB) {
-      const info = win.__HOTELES_POR_HAB[habitacion.id];
+
+    if (typeof window !== "undefined" && window.__HOTELES_POR_HAB) {
+      const info = window.__HOTELES_POR_HAB[habitacion.id];
       if (info) {
         hotel = info.hotel;
         ciudad = info.ciudad;
