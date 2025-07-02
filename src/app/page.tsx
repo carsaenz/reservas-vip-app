@@ -295,12 +295,7 @@ const CalendarioReservaDesdePagina = ({ habitacion, ciudad, hotel, onClose, setC
 
 // --- Componente principal ---
 export default function Home() {
-  // Estado de idioma
-  const [lang, setLang] = useState<'es' | 'en'>('es');
-  const t = translations[lang];
-  const [mostrarCalendario, setMostrarCalendario] = useState(false);
-  const [fechaInicio, setFechaInicio] = useState<Date | null>(null);
-  const [fechaFin, setFechaFin] = useState<Date | null>(null);
+  // Tipos usados en el componente
   type Habitacion = {
     id: string;
     nombre: string;
@@ -310,8 +305,14 @@ export default function Home() {
     capacidad: string;
     servicios: string[];
   };
+  // Estados necesarios para la lógica y el renderizado
   const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<Habitacion | null>(null);
-  const [mostrarCiudades] = useState(false);
+  const [fechaInicio, setFechaInicio] = useState<Date | null>(null);
+  const [fechaFin, setFechaFin] = useState<Date | null>(null);
+  // Estado de idioma
+  const [lang, setLang] = useState<'es' | 'en'>('es');
+  const t = translations[lang];
+  // Eliminados estados y tipos no usados para cumplir ESLint
   const [showChatbot, setShowChatbot] = useState(false);
   const [reservaFinalizada, setReservaFinalizada] = useState(false);
   type Hotel = {
@@ -347,12 +348,7 @@ export default function Home() {
   const [hotelSeleccionado, setHotelSeleccionado] = useState<string | null>(null);
 
   // Cuando se selecciona una ciudad desde el bot
-  function handleSeleccionCiudad(ciudadId: string) {
-    setCiudadSeleccionada(ciudadId);
-    setHoteles(hotelesPorCiudad[ciudadId as keyof typeof hotelesPorCiudad] || []);
-    setHotelSeleccionado(null);
-    setHabitaciones([]);
-  }
+  // Eliminada función no usada para cumplir ESLint
 
   // Cuando se selecciona un hotel desde el bot
   function handleSeleccionHotel(hotelId: string) {
