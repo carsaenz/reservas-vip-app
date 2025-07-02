@@ -806,7 +806,7 @@ function CalendarioReservaHabitacion({ habitacion }: PropsCalendarioReservaHabit
     // Buscar hotel y ciudad
     let hotel = null;
     let ciudad = null;
-    // @ts-ignore
+    // (removed unused @ts-expect-error)
     const win = window as typeof window & { __HOTELES_POR_HAB?: Record<string, { hotel: string; ciudad: string }> };
     if (win.__HOTELES_POR_HAB) {
       const info = win.__HOTELES_POR_HAB[habitacion.id];
