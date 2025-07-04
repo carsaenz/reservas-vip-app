@@ -1,3 +1,4 @@
+"use client";
 // Tipos globales para todo el archivo
 type Habitacion = {
   id: string;
@@ -14,7 +15,6 @@ type CarritoItem = Habitacion & {
   fechaInicio: Date | null;
   fechaFin: Date | null;
 };
-"use client";
 // import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState, useEffect } from "react";
