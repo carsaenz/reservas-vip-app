@@ -328,8 +328,7 @@ export default function Home() {
 
   // Estados necesarios para la lógica y el renderizado
   const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<Habitacion | null>(null);
-  const [fechaInicio] = useState<Date | null>(null);
-  const [fechaFin] = useState<Date | null>(null);
+  // Eliminados estados no usados para cumplir ESLint
   const [showChatbot, setShowChatbot] = useState(false);
   const [reservaFinalizada, setReservaFinalizada] = useState(false);
   type Hotel = {
