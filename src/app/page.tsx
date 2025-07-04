@@ -328,8 +328,8 @@ export default function Home() {
 
   // Estados necesarios para la lógica y el renderizado
   const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<Habitacion | null>(null);
-  const [fechaInicio, setFechaInicio] = useState<Date | null>(null);
-  const [fechaFin, setFechaFin] = useState<Date | null>(null);
+  const [fechaInicio] = useState<Date | null>(null);
+  const [fechaFin] = useState<Date | null>(null);
   const [showChatbot, setShowChatbot] = useState(false);
   const [reservaFinalizada, setReservaFinalizada] = useState(false);
   type Hotel = {
@@ -376,18 +376,7 @@ export default function Home() {
   // No inicializar nada por defecto
 
   // Agregar habitación al carrito (requiere ciudad y hotel seleccionados)
-  function agregarAlCarrito(habitacion: Habitacion) {
-    setCarrito([
-      ...carrito,
-      {
-        ...habitacion,
-        ciudad: ciudadSeleccionada,
-        hotel: hotelSeleccionado,
-        fechaInicio,
-        fechaFin
-      }
-    ]);
-  }
+  // función eliminada porque no se usa
 
   function quitarDelCarrito(idx: number) {
     setCarrito(carrito.filter((_, i) => i !== idx));
