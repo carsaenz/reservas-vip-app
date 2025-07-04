@@ -1,5 +1,21 @@
+// Tipos globales para todo el archivo
+type Habitacion = {
+  id: string;
+  nombre: string;
+  imagen: string;
+  descripcion: string;
+  precio: string;
+  capacidad: string;
+  servicios: string[];
+};
+type CarritoItem = Habitacion & {
+  ciudad: string | null;
+  hotel: string | null;
+  fechaInicio: Date | null;
+  fechaFin: Date | null;
+};
 "use client";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState, useEffect } from "react";
 // Traducciones básicas
@@ -236,11 +252,11 @@ const habitacionesPorHotel = {
 
 // --- Componente auxiliar para seleccionar fechas y agregar al carrito desde la página ---
 type CalendarioReservaDesdePaginaProps = {
-  habitacion: any;
+  habitacion: Habitacion;
   ciudad: string;
   hotel: string;
   onClose: () => void;
-  setCarrito: React.Dispatch<React.SetStateAction<any[]>>;
+  setCarrito: React.Dispatch<React.SetStateAction<CarritoItem[]>>;
   setShowCarrito: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const CalendarioReservaDesdePagina = ({ habitacion, ciudad, hotel, onClose, setCarrito, setShowCarrito }: CalendarioReservaDesdePaginaProps) => {
@@ -271,7 +287,7 @@ const CalendarioReservaDesdePagina = ({ habitacion, ciudad, hotel, onClose, setC
               return;
             }
             setError("");
-            setCarrito((prev: any[]) => [
+            setCarrito((prev) => [
               ...prev,
               {
                 ...habitacion,
